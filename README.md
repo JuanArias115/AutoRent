@@ -60,13 +60,13 @@ npm install
 
 ### Configure Firebase
 
-To connect the application to Firebase and the backend API, you create an `environment.ts` file in the `src/environments/` directory.
+To connect the application to Firebase and the backend API, you create an `environment.ts` file in the `src/app/` directory.
 
 **Create `environment.ts`**:
 
 **Add Configuration**:
 
-Paste the following content into `src/environments/environment.ts`. ** replace the placeholder values for `firebaseConfig` and `apiUrl` with your actual project's configuration.**
+Paste the following content into `src/app/environment.ts`. ** replace the placeholder values for `firebaseConfig` and `apiUrl` with your actual project's configuration.**
 
 ```typescript
 export const environment = {
