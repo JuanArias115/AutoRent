@@ -3,9 +3,10 @@
 
 AutoRent is a client-server application for a car rental service. It helps administrators manage customers, cars, and rentals
 
-<img width="1919" height="909" alt="image" src="https://github.com/user-attachments/assets/737c98a4-6b49-49db-977f-5c326ad5f7cf" />
-<img width="1919" height="912" alt="image" src="https://github.com/user-attachments/assets/535d9f1f-eb99-41b9-82cb-9aa36cc1da67" />
-<img width="1919" height="913" alt="image" src="https://github.com/user-attachments/assets/9a507e27-41f1-4873-83fd-d38e3d93ba62" />
+<img width="1919" height="911" alt="image" src="https://github.com/user-attachments/assets/c9607755-9067-4f95-ad6c-a49ed342aee8" />
+<img width="1919" height="905" alt="image" src="https://github.com/user-attachments/assets/d8b2968b-937f-49c0-bda0-21248f58cf29" />
+<img width="1919" height="902" alt="image" src="https://github.com/user-attachments/assets/7fdb07f4-3993-45e7-bea2-121d14445e33" />
+
 
 ## Tech Stack
 
