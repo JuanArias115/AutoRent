@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\juana\\Desktop\\AutoRent\\Backend\\AutoRent\\AutoRent.csproj": {}
+    "C:\\Users\\juana\\Documents\\AutoRent\\Backend\\AutoRent\\AutoRent.csproj": {}
   },
   "projects": {
-    "C:\\Users\\juana\\Desktop\\AutoRent\\Backend\\AutoRent\\AutoRent.csproj": {
+    "C:\\Users\\juana\\Documents\\AutoRent\\Backend\\AutoRent\\AutoRent.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\juana\\Desktop\\AutoRent\\Backend\\AutoRent\\AutoRent.csproj",
+        "projectUniqueName": "C:\\Users\\juana\\Documents\\AutoRent\\Backend\\AutoRent\\AutoRent.csproj",
         "projectName": "AutoRent",
-        "projectPath": "C:\\Users\\juana\\Desktop\\AutoRent\\Backend\\AutoRent\\AutoRent.csproj",
+        "projectPath": "C:\\Users\\juana\\Documents\\AutoRent\\Backend\\AutoRent\\AutoRent.csproj",
         "packagesPath": "C:\\Users\\juana\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\juana\\Desktop\\AutoRent\\Backend\\AutoRent\\obj\\",
+        "outputPath": "C:\\Users\\juana\\Documents\\AutoRent\\Backend\\AutoRent\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

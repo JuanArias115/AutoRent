@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pQbmejSkBWM=",
+  "dgSpecHash": "N2QRznTAB5w=",
   "success": true,
-  "projectFilePath": "C:\\Users\\juana\\Desktop\\AutoRent\\Backend\\AutoRent\\AutoRent.csproj",
+  "projectFilePath": "C:\\Users\\juana\\Documents\\AutoRent\\Backend\\AutoRent\\AutoRent.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\juana\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\juana\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

@@ -1,0 +1,6 @@
+﻿front/src/app/enviroment.ts
+front/.vscode
+Backend/AutoRent/appsettings.json
+Backend/AutoRent/obj
+Backend/.vs
+Backend/AutoRent/bin
