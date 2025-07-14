@@ -1,0 +1,186 @@
+<h1>Cars</h1>
+<p>Manage your cars here</p>
+<div class="container">
+  <div class="d-flex justify-content-center mb-3">
+    <div class="d-flex" role="search" style="width: 50%">
+      <input
+        class="form-control me-2 flex-grow-1"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        #searchQuery
+      />
+      <button
+        (click)="searchCars(searchQuery.value)"
+        class="btn btn-success"
+        type="submit"
+      >
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end align-items-center gap-5 mb-3">
+    <div class="form-check form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="toggleAvailability"
+        [checked]="showAvailableCars"
+        (change)="toggleAvailability()"
+      />
+      <label class="form-check-label" for="toggleAvailability"
+        >Show Available Cars</label
+      >
+    </div>
+    <button class="btn btn-primary" (click)="openModal('create', modalCreate)">
+      <i class="fa fa-plus"></i> Add Car
+    </button>
+  </div>
+
+  <div class="d-flex flex-column" style="height: 550px" *ngIf="cars.length > 0">
+    <div class="flex-grow-1 overflow-auto">
+      <table class="table fs-6 table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th
+              scope="col"
+              class="text-center text-dark"
+              *ngFor="let header of headers"
+            >
+              {{ header }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let car of paginatedCars">
+            <td class="text-center text-dark">{{ car.brand }}</td>
+            <td class="text-center text-dark">{{ car.model }}</td>
+            <td class="text-center text-dark">{{ car.year }}</td>
+            <td class="text-center text-dark">
+              {{ car.currentKm | number : "1.0-0" }}
+            </td>
+            <td class="text-center text-dark">{{ car.plateNumber }}</td>
+
+            <td
+              class="text-center"
+              [ngClass]="{
+                'text-success fw-bold': car.isAvailable,
+                'text-danger ': !car.isAvailable
+              }"
+            >
+              {{ car.isAvailable ? "Yes" : "No" }}
+            </td>
+            <td class="text-center text-dark">
+              <button
+                *ngIf="car.isAvailable"
+                class="btn btn-success me-2"
+                (click)="openModal('rental', rental, car.id)"
+              >
+                <i class="fa fa-car"></i>
+              </button>
+              <button
+                class="btn btn-info me-2"
+                (click)="openModal('view', view, car.id)"
+              >
+                <i class="fa fa-eye"></i>
+              </button>
+              <button
+                class="btn btn-warning me-2"
+                (click)="openModal('edit', edit, car.id)"
+              >
+                <i class="fa fa-pencil"></i>
+              </button>
+              <button class="btn btn-danger me-2" (click)="deleteCar(car.id)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <ul class="pagination justify-content-center mb-0">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link" (click)="changePage(currentPage - 1)"
+            >Previous</a
+          >
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a class="page-link" (click)="changePage(currentPage + 1)">Next</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div *ngIf="cars.length === 0" class="alert alert-info">No cars found</div>
+</div>
+
+<ng-template #modalCreate let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Add Car</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+      (click)="modal.dismiss()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <app-add-cars (carAdded)="carModified()"></app-add-cars>
+  </div>
+</ng-template>
+
+<ng-template #edit let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Edit Car</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+      (click)="modal.dismiss()"
+    ></button>
+  </div>
+  <div class="modal-body modal-lg">
+    <app-add-cars
+      (carAdded)="carModified()"
+      [carEditId]="editCarSelected"
+    ></app-add-cars>
+  </div>
+</ng-template>
+
+<ng-template #view let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">View Car</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+      (click)="modal.dismiss()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <app-view-car [idCar]="selectedCarViewId"></app-view-car>
+  </div>
+</ng-template>
+
+<ng-template #rental let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Rent</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+      (click)="modal.dismiss()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <app-add-rental
+      [idCar]="selectedCarViewId"
+      (rentalCreated)="carModified()"
+    ></app-add-rental>
+  </div>
+</ng-template>

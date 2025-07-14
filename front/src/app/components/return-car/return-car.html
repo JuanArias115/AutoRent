@@ -1,0 +1,60 @@
+<div class="container">
+    <form [formGroup]="rentalForm" (ngSubmit)="onSubmit()" (change)="calculateOrderInfo()">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="form-group" >
+                    <label for="actualReturn">Actual Return Date</label>
+                    <input readonly type="date" id="actualReturn" formControlName="actualReturn" class="form-control" >
+                </div>
+
+                <div class="form-group">
+                    <label for="endKm">End Km</label>
+                    <input type="number" id="endKm" formControlName="endKm" class="form-control" [min]="minKm" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="damageCost">Damage Cost</label>
+                    <input type="number" id="damageCost" formControlName="damageCost" class="form-control" required>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Order Info</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <p>Car</p> {{ orderInfo.carName }}
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <p>Rent Duration</p> {{ orderInfo.days }}
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <p>Rent Cost</p> <span>{{ orderInfo.rentCost | currency }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <p>Late Return Fee</p> <span>{{ orderInfo.lateReturnFee | currency }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <p>Excess Km Fee</p> <span>{{ orderInfo.excessKmFee | currency }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <p>Damage Cost</p> <span>{{ orderInfo.damageCost | currency }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between text-success">
+                            <strong>Total Price</strong> 
+                            <span>{{ total | currency }}</span>
+                        </li> 
+                    </ul>
+             
+
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!rentalForm.valid">Add Rental</button>
+
+    </form>
+</div>

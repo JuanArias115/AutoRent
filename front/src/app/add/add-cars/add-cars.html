@@ -1,0 +1,157 @@
+<div class="container mt-4">
+  <form [formGroup]="carForm" (ngSubmit)="onClick()" >
+    <div class="row"> 
+      <div class="col-md-4"> <div class="mb-3">
+          <label for="brand" class="form-label">Brand</label>
+          <input type="text" class="form-control" id="brand"
+                 formControlName="brand" placeholder="Enter car brand">
+          <div class="text-danger" *ngIf="carForm.get('brand')?.invalid && carForm.get('brand')?.touched">
+            Brand is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="model" class="form-label">Model</label>
+          <input type="text" class="form-control" id="model"
+                 formControlName="model" placeholder="Enter car model">
+          <div class="text-danger" *ngIf="carForm.get('model')?.invalid && carForm.get('model')?.touched">
+            Model is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="year" class="form-label">Year</label>
+          <input type="number" class="form-control" id="year"
+                 formControlName="year" placeholder="Enter car year">
+          <div class="text-danger" *ngIf="carForm.get('year')?.invalid && carForm.get('year')?.touched">
+            Year is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="plateNumber" class="form-label">Plate Number</label>
+          <input type="text" class="form-control" id="plateNumber"
+                 formControlName="plateNumber" placeholder="Enter car plate number">
+          <div class="text-danger" *ngIf="carForm.get('plateNumber')?.invalid && carForm.get('plateNumber')?.touched">
+            Plate number is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="imageUrl" class="form-label">Image URL</label>
+          <input type="url" class="form-control" id="imageUrl"
+                 formControlName="imageUrl" placeholder="Enter car image URL">
+          <div class="text-danger" *ngIf="carForm.get('imageUrl')?.invalid && carForm.get('imageUrl')?.touched">
+            <span *ngIf="carForm.get('imageUrl')?.errors?.['required']">Image URL is required.</span>
+            <span *ngIf="carForm.get('imageUrl')?.errors?.['pattern']">Enter a valid URL.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4"> <div class="mb-3">
+          <label for="currentKm" class="form-label">Current Km</label>
+          <input type="text" class="form-control" id="currentKm"
+                 formControlName="currentKm" placeholder="Enter car current Km">
+          <div class="text-danger" *ngIf="carForm.get('currentKm')?.invalid && carForm.get('currentKm')?.touched">
+            Current Km is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="doors" class="form-label">Doors</label>
+          <input type="number" class="form-control" id="doors"
+                 formControlName="doors" placeholder="Enter number of doors">
+          <div class="text-danger" *ngIf="carForm.get('doors')?.invalid && carForm.get('doors')?.touched">
+            Doors must be between 2 and 5.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="capacity" class="form-label">Capacity</label>
+          <input type="number" class="form-control" id="capacity"
+                 formControlName="capacity" placeholder="Enter car capacity">
+          <div class="text-danger" *ngIf="carForm.get('capacity')?.invalid && carForm.get('capacity')?.touched">
+            Capacity must be between 1 and 10.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="emissionClass" class="form-label">Emission Class</label>
+          <input type="text" class="form-control" id="emissionClass"
+                 formControlName="emissionClass" placeholder="Enter emission class">
+          <div class="text-danger" *ngIf="carForm.get('emissionClass')?.invalid && carForm.get('emissionClass')?.touched">
+            Emission class is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="fuelType" class="form-label">Fuel Type</label>
+          <input type="text" class="form-control" id="fuelType"
+                 formControlName="fuelType" placeholder="Enter fuel type">
+          <div class="text-danger" *ngIf="carForm.get('fuelType')?.invalid && carForm.get('fuelType')?.touched">
+            Fuel type is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="transmission" class="form-label">Transmission</label>
+          <input type="text" class="form-control" id="transmission"
+                 formControlName="transmission" placeholder="Enter transmission type">
+          <div class="text-danger" *ngIf="carForm.get('transmission')?.invalid && carForm.get('transmission')?.touched">
+            Transmission type is required.
+          </div>
+        </div>
+      </div>
+          <div class="col-md-4">
+        <div class="mb-3">
+          <label for="kmDay" class="form-label">Km/Day</label>
+          <input type="number" class="form-control" id="kmDay"
+                 formControlName="kmDay" placeholder="Enter Km per day">
+          <div class="text-danger" *ngIf="carForm.get('kmDay')?.invalid && carForm.get('kmDay')?.touched">
+            Km/Day is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="kmPenaltyFee" class="form-label">Km Penalty Fee</label>
+          <input type="number" class="form-control" id="kmPenaltyFee"
+                  formControlName="kmPenaltyFee" placeholder="Enter Km penalty fee">
+          <div class="text-danger" *ngIf="carForm.get('kmPenaltyFee')?.invalid && carForm.get('kmPenaltyFee')?.touched">
+            Km penalty fee is required.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="dailyPrice" class="form-label">Daily Price</label>
+          <input type="number" class="form-control" id="dailyPrice"
+                 formControlName="dailyPrice" placeholder="Enter daily price">
+          <div class="text-danger" *ngIf="carForm.get('dailyPrice')?.invalid && carForm.get('dailyPrice')?.touched">
+            Daily price is required.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="dailyPenaltyFee" class="form-label">Daily Penalty Fee</label>
+          <input type="number" class="form-control" id="dailyPenaltyFee"
+                 formControlName="dailyPenaltyFee" placeholder="Enter daily penalty fee">
+          <div class="text-danger" *ngIf="carForm.get('dailyPenaltyFee')?.invalid && carForm.get('dailyPenaltyFee')?.touched">
+            Daily penalty fee is required.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="unlimitedKmFee" class="form-label">Unlimited Km Fee</label>
+          <input type="number" class="form-control" id="unlimitedKmFee"
+                 formControlName="unlimitedKmFee" placeholder="Enter unlimited Km fee">
+          <div class="text-danger" *ngIf="carForm.get('unlimitedKmFee')?.invalid && carForm.get('unlimitedKmFee')?.touched">
+            Unlimited Km fee is required.
+          </div>
+        </div>
+
+          </div>
+
+          </div>
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-success" [disabled]="carForm.invalid">
+        <i class="fa fa-plus"></i> Save
+      </button>
+    </div>
+  </form>
+</div>

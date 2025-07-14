@@ -1,0 +1,135 @@
+<div *ngIf="rentalList.length > 0">
+  <h1>Rentals</h1>
+  <p>Manage your rentals here</p>
+  <div class="row">
+    <div class="col-md-9" style="overflow-x: auto; max-height: 700px">
+      <div class="d-flex justify-content-end align-items-center gap-5 mb-3">
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="toggleAvailability"
+            [checked]="showAvailableCars"
+            (change)="toggleAvailability()"
+          />
+          <label class="form-check-label" for="toggleAvailability"
+            >Active</label
+          >
+        </div>
+      </div>
+      <div class="table">
+        <table class="table fs-6 table-striped table-bordered table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th
+                scope="col"
+                class="text-center text-dark"
+                *ngFor="let header of headers"
+              >
+                {{ header }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let rental of rentalPaginated">
+              <td>{{ rental.carModel }}</td>
+              <td>{{ rental.startDate | date : "yyyy.MM.dd" }}</td>
+              <td>{{ rental.expectedDate | date : "yyyy.MM.dd" }}</td>
+              <td>{{ rental.startKm | number }}</td>
+              <td>{{ rental.endKm | number }}</td>
+              <td>{{ rental.isUnlimitedKm }}</td>
+              <td
+                [ngClass]="{
+                  'text-success': rental.status === 'active',
+                  'text-primary': rental.status === 'Returned'
+                }"
+              >
+                {{ (rental.status | titlecase) ?? "N/A" }}
+              </td>
+              <td class="text-center">
+                <button
+                  *ngIf="rental.status === 'active'"
+                  class="btn btn-success btn-sm me-2"
+                  (click)="openModal('return', modalReturn, rental)"
+                >
+                  <i class="fa fa-check"></i>
+                </button>
+                <button
+                  class="btn btn-primary btn-sm me-2"
+                  (click)="openModal('view', modalView, rental)"
+                >
+                  <i class="fa fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm"
+                  (click)="cancelRental(rental.id)"
+                >
+                  <i class="fa fa-times"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <ul class="pagination justify-content-center mb-0">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <a class="page-link" (click)="changePage(currentPage - 1)"
+              >Previous</a
+            >
+          </li>
+          <li class="page-item" [class.disabled]="currentPage === totalPages">
+            <a class="page-link" (click)="changePage(currentPage + 1)">Next</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <app-info
+        [totalCarsCount]="rentalCount"
+        [totalRentalsCount]="totalRevenue"
+      ></app-info>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="rentalList.length === 0" class="container h-100">
+  <div class="alert alert-info text-center">
+    <h2>No Rentals Found</h2>
+    <p>There are currently no rentals available.</p>
+  </div>
+</div>
+
+<ng-template #modalReturn let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Return Car</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+      (click)="modal.dismiss()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <app-return-car
+      [rental]="rentalSelected"
+      (rentalReturned)="rentalModified()"
+    ></app-return-car>
+  </div>
+</ng-template>
+
+<ng-template #modalView let-modal>
+  <div class="modal-header">
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+      (click)="modal.dismiss()"
+    ></button>
+  </div>
+  <div class="modal-body modal-lg">
+    <app-view-rent [rentalId]="rentalSelected.id"></app-view-rent>
+  </div>
+</ng-template>

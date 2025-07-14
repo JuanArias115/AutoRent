@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h3 class="mb-0">Rental Details</h3>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="mb-2">
+            <strong>Customer:</strong>
+            {{ rental.customerName }}
+          </p>
+          <p class="mb-2">
+            <strong>Start Date:</strong>
+            {{ rental.startDate | date }}
+          </p>
+          <p class="mb-2">
+            <strong>Expected Return Date:</strong>
+            {{ rental.expectedDate | date }}
+          </p>
+          <p class="mb-2">
+            <strong>Unlimited Km:</strong>
+            {{ rental.unlimitedKm ? "Yes" : "No" }}
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p class="mb-2">
+            <strong>Car Model:</strong>
+            {{ rental.carModel }}
+          </p>
+          <p class="mb-2">
+            <strong>Start Km:</strong>
+            {{ rental.startKm | number }}
+          </p>
+          <p class="mb-2">
+            <strong>End Km:</strong>
+            {{ rental.endKm | number }}
+          </p>
+          <p class="mb-2">
+            <strong>Total Paid:</strong>
+
+            {{ rental.totalPaid ?? 0 | currency }}
+          </p>
+        </div>
+      </div>
+      <hr class="my-4" />
+      <div class="row">
+        <div class="col-md-6">
+          <p class="mb-2">
+            <strong
+              ><i class="fa fa-calendar-x-fill me-2"></i>Actual Return
+              Date:</strong
+            >
+            {{
+              rental.actualReturn ? (rental.actualReturn | date) : "No Return"
+            }}
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p class="mb-2">
+            <strong><i class="fa fa-info-circle-fill me-2"></i>Status:</strong>
+            <span
+              [ngClass]="{
+                'badge bg-success': rental.status === 'Active',
+                'badge bg-primary': rental.status === 'Returned'
+              }"
+            >
+              {{ rental.status | titlecase }}
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

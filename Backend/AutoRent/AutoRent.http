@@ -1,0 +1,6 @@
+@AutoRent_HostAddress = http://localhost:5075
+
+GET {{AutoRent_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,91 @@
+<div class="container">
+  <form
+    [formGroup]="rentalForm"
+    (ngSubmit)="onSubmit()"
+    (change)="calculateOrderInfo()"
+  >
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="customerId">Customer</label>
+          <select
+            id="customerId"
+            formControlName="customerId"
+            class="form-control"
+          >
+            <option *ngFor="let user of userList" [value]="user.id">
+              {{ user.fullName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="startDate">Start Date</label>
+          <input
+            type="date"
+            id="startDate"
+            formControlName="startDate"
+            class="form-control"
+            [min]="today"
+            [max]="rentalForm.get('expectedDate')?.value"
+          />
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="expectedDate">Expected Return Date</label>
+          <input
+            type="date"
+            id="expectedDate"
+            formControlName="expectedDate"
+            class="form-control"
+            [min]="rentalForm.get('startDate')?.value"
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label for="isUnlimitedKm">Unlimited Km</label>
+          <input
+            type="checkbox"
+            id="isUnlimitedKm"
+            formControlName="isUnlimitedKm"
+            class="form-check-input"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Order Info</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between">
+              <p>Cars</p>
+              {{ orderInfo.carName }}
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <p>Days</p>
+              {{ orderInfo.days == undefined ? 1 : orderInfo.days }}
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <p>Price per day</p>
+              <span>{{ orderInfo.dailyPrice | currency }}</span>
+            </li>
+            <li
+              class="list-group-item d-flex justify-content-between text-success"
+            >
+              <strong>Total Price</strong>
+              <span>{{ orderInfo.totalPrice | currency }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!rentalForm.valid"
+    >
+      Add Rental
+    </button>
+  </form>
+</div>

@@ -1,0 +1,52 @@
+<div class="bg-light border-end h-100 p-3 d-flex flex-column">
+  <div class="d-flex align-items-center mb-3">
+    <img
+      src="carIcon.png"
+      alt=""
+      width="40"
+      height="40"
+      class="d-inline-block align-text-top me-2"
+    />
+    <span class="fs-4">AutoRent</span>
+  </div>
+  <div>
+    <hr />
+    <h5 class="text-center">
+      Welcome, <strong>{{ nameUser }}</strong
+      >!
+    </h5>
+    <hr />
+  </div>
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <a
+        class="btn btn-success w-100 mb-2 text-start"
+        routerLink="/rentals"
+        routerLinkActive="active"
+      >
+        <i class="fa-solid fa-key me-2"></i> Rentals
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="btn btn-success w-100 mb-2 text-start"
+        routerLink="/cars"
+        routerLinkActive="active"
+      >
+        <i class="fa-solid fa-car me-2"></i> Cars
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="btn btn-success w-100 mb-2 text-start"
+        routerLink="/customers"
+        routerLinkActive="active"
+      >
+        <i class="fa-solid fa-user me-2"></i> Customers
+      </a>
+    </li>
+  </ul>
+  <div class="mt-auto">
+    <a class="btn btn-danger w-100" (click)="logOut()">Log Out</a>
+  </div>
+</div>
